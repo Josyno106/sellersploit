@@ -1,4 +1,4 @@
-import ShopOwnerDetails from "../../components/dashboard/ShopOwnerDetails";
+import ShopOwnerDetails from "../../components/Dashboard/ShopOwnerDetails";
 
 const Index = () => {
   return <ShopOwnerDetails />;
