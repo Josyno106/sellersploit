@@ -86,7 +86,7 @@ const Dashboard = () => {
               </div>
               <div className=" flex-grow ">
                 <Link
-                  href="#"
+                  href={`/shops/${shop.id}`}
                   className="p-2 rounded-xl text-custom-orange font-bold flex items-center gap-4 justify-end"
                 >
                   view shop <BsArrowRight />
