@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Login from "../components/auth/Login";
-import Dashboard from "../components/dashboard/Dashboard";
-import SalesPoint from "../components/salespoint/SalesPoint";
+
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
