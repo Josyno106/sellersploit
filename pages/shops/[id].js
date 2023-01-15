@@ -198,7 +198,7 @@ const ShopPage = () => {
                 />
                 <input
                   placeholder="Litres *"
-                  type="number"
+                  type="text"
                   required
                   className="border-b-[1px] p-2 focus:border-b-custom-orange focus:outline-none  text-gray-600  mt-1"
                   ref={litresRef}

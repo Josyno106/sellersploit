@@ -30,6 +30,9 @@ const SalesPoint = () => {
   //fetch products from the database
   const [products, setProducts] = useState([]);
 
+  //set variable for showing receipt
+  const [showReceipt, setShowReceipt] = useState(true);
+
   //get all the shops
   const fetchProducts = useRef(false);
 
@@ -157,18 +160,36 @@ const SalesPoint = () => {
             ))}
           </div>
         </div>
-        <div className="w-1/5 fixed right-0 top-0 h-full p-3 bg-white ">
-          <div className="h-full relative">
-            <OrderItem />
-          </div>
-          <div
-            className=" absolute  bg-custom-orange bottom-0 w-full left-0 p-4 flex
+        <div>
+          {showReceipt ? (
+            <div className="w-1/5 fixed right-0 top-0 h-full p-3 bg-white ">
+              <div className="h-full relative">
+                <h3>JAGZMA Ltd</h3>
+              </div>
+              <div
+                className=" absolute  bg-custom-orange bottom-0 w-full left-0 p-4 flex
+           items-center justify-center text-lg font-bold gap-3 cursor-pointer
+           text-white select-none 
+           "
+              >
+                <BsCartPlusFill /> Print Receipt
+              </div>
+            </div>
+          ) : (
+            <div className="w-1/5 fixed right-0 top-0 h-full p-3 bg-white ">
+              <div className="h-full relative">
+                <OrderItem />
+              </div>
+              <div
+                className=" absolute  bg-custom-orange bottom-0 w-full left-0 p-4 flex
            items-center justify-center text-xl font-bold gap-3 cursor-pointer
            text-white select-none
            "
-          >
-            <BsCartPlusFill /> Checkout
-          </div>
+              >
+                <BsCartPlusFill /> Checkout
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
