@@ -23,6 +23,7 @@ const ShopPage = () => {
   const codeRef = useRef(null);
   const priceRef = useRef(null);
   const litresRef = useRef(null);
+  const quantityRef = useRef(null);
 
   //get functions for creating the employees database
 
@@ -151,7 +152,8 @@ const ShopPage = () => {
                     descriptionRef.current.value,
                     codeRef.current.value,
                     priceRef.current.value,
-                    litresRef.current.value
+                    litresRef.current.value,
+                    quantityRef.current.value
                   );
 
                   alert("Added the product successfully");
@@ -160,6 +162,7 @@ const ShopPage = () => {
                   codeRef.current.value = "";
                   priceRef.current.value = "";
                   litresRef.current.value = "";
+                  quantityRef.current.value = "";
                 } catch (error) {
                   alert("Failed to add product :  " + error);
                   setloading(false);
@@ -199,6 +202,13 @@ const ShopPage = () => {
                   required
                   className="border-b-[1px] p-2 focus:border-b-custom-orange focus:outline-none  text-gray-600  mt-1"
                   ref={litresRef}
+                />
+                <input
+                  placeholder="Quantity *"
+                  type="number"
+                  required
+                  className="border-b-[1px] p-2 focus:border-b-custom-orange focus:outline-none  text-gray-600  mt-1"
+                  ref={quantityRef}
                 />
                 <input
                   placeholder="Price *"

@@ -4,7 +4,7 @@ import { BsCartPlusFill } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState, useRef, useMemo } from "react";
 import CartContext from "../../contexts/CartContext";
 import FirebaseContext from "../../contexts/FirebaseContext";
 import { db } from "../../Firebase/FIREBASE";
@@ -56,6 +56,21 @@ const SalesPoint = () => {
     }
   }, [currentUserDetails]);
 
+  //variables for implementing search
+
+  const [query, setQuery] = useState("");
+
+  //define the search function
+  const filteredData = useMemo(
+    () =>
+      products.filter(
+        (item) =>
+          item.productname.toLowerCase().includes(query.toLowerCase()) ||
+          item.description.toLowerCase().includes(query.toLowerCase())
+      ),
+    [products, query]
+  );
+
   //get router for user navigation
   const router = useRouter();
 
@@ -91,6 +106,9 @@ const SalesPoint = () => {
                 type="text"
                 className=" outline-none "
                 placeholder="search product"
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                }}
               />
             </div>
             <div
@@ -123,18 +141,24 @@ const SalesPoint = () => {
           </div>
           <div
             className="w-4/5 grid grid-cols-5 gap-4 px-12 py-12
-         md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5
+         md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 
         
          "
           >
-            {/* {currentUserDetails.shopid} */}
-            {products.length}
-            <SingleProduct />
-            <SingleProduct />
+            {/* {products.length} */}
+            {filteredData.map((item, index) => (
+              <SingleProduct
+                name={item.productname}
+                category={item.category}
+                description={item.description}
+                price={item.price}
+                key={index}
+              />
+            ))}
           </div>
         </div>
-        <div className="bg-white w-1/5 fixed right-0 top-0 h-full p-3">
-          <div className="h-full">
+        <div className="w-1/5 fixed right-0 top-0 h-full p-3 bg-white ">
+          <div className="h-full relative">
             <OrderItem />
           </div>
           <div

@@ -81,7 +81,7 @@ export const FirebaseContextProvider = ({ children }) => {
   //create a new shop
   const createShop = (owner, name, location, pin) => {
     addDoc(collection(db, `allshops/${owner}/shops`), {
-      owner: "owner",
+      owner: owner,
       name: "name",
       location: "location",
       pin: pin,
@@ -112,7 +112,8 @@ export const FirebaseContextProvider = ({ children }) => {
     description,
     code,
     price,
-    litres
+    litres,
+    quantity
   ) => {
     addDoc(collection(db, `allproducts/${shopId}/products`), {
       addedby: addedby,
@@ -123,6 +124,7 @@ export const FirebaseContextProvider = ({ children }) => {
       price: price,
       category: "default",
       litres: litres,
+      quantity: quantity,
       created: Timestamp.now(),
     });
   };
