@@ -17,6 +17,7 @@ Sellersploit is an online Point of Sale. The app helps businesses manage invento
 - Firebase
 - React-Print
 - Tailwind Css
+- Deployed using Vercel
 
 ## How to run the project
 - Clone the repository 
