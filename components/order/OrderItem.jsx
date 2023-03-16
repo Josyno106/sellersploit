@@ -88,4 +88,6 @@ const OrderItem = React.forwardRef(({ showReceipt }, ref) => {
   );
 });
 
+OrderItem.displayName = "MyApp";
+
 export default OrderItem;
