@@ -31,7 +31,6 @@ import {
   getDoc,
   doc,
 } from "firebase/firestore";
-import PrintingPanel from "../order/ReceipePanel";
 
 const SalesPoint = () => {
   const { itemsList } = useContext(CartContext);
