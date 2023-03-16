@@ -4,16 +4,10 @@ const CartContext = createContext();
 export const CartContextProvider = ({ children }) => {
   const namesake = "Joshua";
 
-  const [itemsList, setItemsList] = useState([
-    {
-      name: "Rimula Oil",
-      price: 2000,
-      category: "Lubricants",
-    },
-  ]);
+  const [itemsList, setItemsList] = useState([]);
 
   return (
-    <CartContext.Provider value={{ namesake, itemsList, setItemsList }}>
+    <CartContext.Provider value={{ itemsList, setItemsList }}>
       {children}
     </CartContext.Provider>
   );

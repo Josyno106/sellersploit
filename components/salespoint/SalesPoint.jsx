@@ -4,10 +4,19 @@ import { BsCartPlusFill } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { useContext, useEffect, useState, useRef, useMemo } from "react";
+import {
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+  useMemo,
+  forwardRef,
+} from "react";
 import CartContext from "../../contexts/CartContext";
 import FirebaseContext from "../../contexts/FirebaseContext";
 import { db } from "../../Firebase/FIREBASE";
+import { useReactToPrint } from "react-to-print";
+import ReactToPrint from "react-to-print";
 
 import { useRouter } from "next/router";
 import {
@@ -22,6 +31,7 @@ import {
   getDoc,
   doc,
 } from "firebase/firestore";
+import PrintingPanel from "../order/ReceipePanel";
 
 const SalesPoint = () => {
   const { itemsList } = useContext(CartContext);
@@ -31,7 +41,7 @@ const SalesPoint = () => {
   const [products, setProducts] = useState([]);
 
   //set variable for showing receipt
-  const [showReceipt, setShowReceipt] = useState(true);
+  const [showReceipt, setShowReceipt] = useState(false);
 
   //get all the shops
   const fetchProducts = useRef(false);
@@ -50,6 +60,9 @@ const SalesPoint = () => {
               productname: doc.data().productname,
               description: doc.data().description,
               price: doc.data().price,
+              litres: "1",
+              quantity: 1,
+              total: 1,
               id: doc.id,
             })
           );
@@ -76,6 +89,9 @@ const SalesPoint = () => {
 
   //get router for user navigation
   const router = useRouter();
+
+  //add the useRef for the printing panel
+  const componentRef = useRef();
 
   useEffect(() => {
     if (currentUserDetails.type === "admin") {
@@ -161,35 +177,34 @@ const SalesPoint = () => {
           </div>
         </div>
         <div>
-          {showReceipt ? (
-            <div className="w-1/5 fixed right-0 top-0 h-full p-3 bg-white ">
-              <div className="h-full relative">
-                <h3>JAGZMA Ltd</h3>
-              </div>
-              <div
-                className=" absolute  bg-custom-orange bottom-0 w-full left-0 p-4 flex
-           items-center justify-center text-lg font-bold gap-3 cursor-pointer
-           text-white select-none 
-           "
-              >
-                <BsCartPlusFill /> Print Receipt
-              </div>
+          <div className="w-1/5 fixed right-0 top-0 h-full p-3 bg-white ">
+            <div className="h-full relative">
+              {/* <OrderItem /> */}
+              <OrderItem ref={componentRef} showReceipt={showReceipt} />
+              <ReactToPrint
+                trigger={() => (
+                  <div
+                    className=" absolute  bg-custom-orange bottom-0 w-full left-0 p-4 flex
+           items-center justify-center text-xl font-bold gap-3 cursor-pointer
+           text-white select-none"
+                  >
+                    <BsCartPlusFill /> Lipa Sasa
+                  </div>
+                )}
+                content={() => setShowReceipt(!showReceipt)}
+                // componentRef.current
+              />
             </div>
-          ) : (
-            <div className="w-1/5 fixed right-0 top-0 h-full p-3 bg-white ">
-              <div className="h-full relative">
-                <OrderItem />
-              </div>
-              <div
+
+            {/* <div
                 className=" absolute  bg-custom-orange bottom-0 w-full left-0 p-4 flex
            items-center justify-center text-xl font-bold gap-3 cursor-pointer
            text-white select-none
            "
               >
                 <BsCartPlusFill /> Checkout
-              </div>
-            </div>
-          )}
+              </div> */}
+          </div>
         </div>
       </div>
     </>

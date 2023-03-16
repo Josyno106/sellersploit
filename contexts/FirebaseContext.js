@@ -30,6 +30,9 @@ export const FirebaseContextProvider = ({ children }) => {
   //fetch products from the database
   const [products, setProducts] = useState([]);
 
+  //set variable for showing receipt
+  const [showReceipt, setShowReceipt] = useState(true);
+
   //create new user
   const signupUser = (email, password) => {
     return auth.createUserWithEmailAndPassword(email, password);
@@ -214,6 +217,8 @@ export const FirebaseContextProvider = ({ children }) => {
     currentUserDetails,
     products,
     setProducts,
+    showReceipt,
+    setShowReceipt,
   };
 
   return (

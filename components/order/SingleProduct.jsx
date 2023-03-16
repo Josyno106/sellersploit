@@ -6,6 +6,7 @@ import CartContext from "../../contexts/CartContext";
 const SingleProduct = ({ name, category, price, description }) => {
   //get the items in the Cart List
   const { itemsList, setItemsList } = useContext(CartContext);
+
   return (
     <>
       <div className="bg-white p-4 rounded-2xl flex flex-col cursor-pointer relative group overflow-hidden select-none">
@@ -23,8 +24,16 @@ const SingleProduct = ({ name, category, price, description }) => {
           onClick={() => {
             setItemsList([
               ...itemsList,
-              { name: name, category: category, price: price },
+              {
+                name: name,
+                category: category,
+                price: price,
+                litres: "1",
+                quantity: 1,
+                total: 1,
+              },
             ]);
+            console.log(itemsList);
           }}
         >
           <BsCartPlusFill />
