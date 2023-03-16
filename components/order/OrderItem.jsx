@@ -70,7 +70,7 @@ const OrderItem = React.forwardRef(({ showReceipt }, ref) => {
             <>
               <ul>
                 {itemsList.map((item, index) => (
-                  <li>{parseInt(numOfItems)}</li>
+                  <li key={index}>{parseInt(numOfItems)}</li>
                 ))}
               </ul>
               {/* {itemsList.length} */}
