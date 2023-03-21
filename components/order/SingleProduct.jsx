@@ -10,7 +10,11 @@ const SingleProduct = ({ name, category, price, description }) => {
   return (
     <>
       <div className="bg-white p-4 rounded-2xl flex flex-col cursor-pointer relative group overflow-hidden select-none">
-        <Image src={rimula} alt="product image" className="rounded-xl" />
+        <Image
+          src="https://adc.or.ke/images/Friesian_website.jpg"
+          alt="product image"
+          className="rounded-xl"
+        />
         <h2 className="font-bold md:text-xl mt-1 text-gray-700 ">{name}</h2>
         <p className="text-gray-500">{description}</p>
         <h3 className="font-bold mt-1 text-custom-orange  ">Ksh. {price}</h3>
