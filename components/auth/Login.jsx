@@ -74,12 +74,12 @@ const Login = () => {
                 <input type="submit" value="login" className="cursor-pointer" />
               </div>
             </form>
-            {/* <p className="sign-up">
+            <p className="sign-up">
               Don&apos;t have an account?{" "}
               <Link href="/signup" className="text-orange-500 font-bold">
                 Sign up
               </Link>
-            </p> */}
+            </p>
           </div>
           <div className="w-1/2 ">
             <Image

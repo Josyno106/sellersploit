@@ -47,11 +47,11 @@ const SalesPoint = () => {
 
   useEffect(() => {
     console.log(`allproducts/${currentUserDetails.shopid}/products`);
-    if (currentUserDetails) {
+    if (currentUserDetails.shopid) {
       if (fetchProducts.current) return;
       fetchProducts.current = true;
       const subscriber = getDocs(
-        collection(db, `allproducts/uRSB5mfeMQn4V4F9lIBn/products`)
+        collection(db, `allproducts/${currentUserDetails.shopid}/products`)
       ).then((snapshot) => {
         snapshot.forEach((doc) => {
           setProducts((products) =>
@@ -62,12 +62,15 @@ const SalesPoint = () => {
               litres: "1",
               quantity: 1,
               total: 1,
+              code: doc.data().code,
               id: doc.id,
             })
           );
         });
       });
       return () => subscriber;
+    } else {
+      console.log("user details empty");
     }
   }, [currentUserDetails]);
 
@@ -170,6 +173,7 @@ const SalesPoint = () => {
                 category={item.category}
                 description={item.description}
                 price={item.price}
+                code={item.code}
                 key={index}
               />
             ))}

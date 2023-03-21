@@ -48,7 +48,7 @@ const ItemTemplate = ({
           }
         >
           <div>
-            <h3>{name}</h3>
+            <h3> {name}</h3>
             <h3 className="flex justify-between gap-2">
               <span>
                 Ksh. {price} x {numOfItems}

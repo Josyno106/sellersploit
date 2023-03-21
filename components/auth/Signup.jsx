@@ -80,9 +80,9 @@ const Signup = () => {
               </div>
             </form>
             <p className="sign-up">
-              Don&apos;t have an account?{" "}
+              Already have an account?{" "}
               <Link href="/login" className="text-orange-500 font-bold">
-                Sign up
+                Login
               </Link>
             </p>
           </div>

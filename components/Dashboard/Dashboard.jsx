@@ -43,9 +43,9 @@ const Dashboard = () => {
   const router = useRouter();
 
   //create the new shop
-  const createNewShop = async () => {
+  const createNewShop = async (uid, name, location, pin) => {
     try {
-      await createShop(currentUser.uid, name, location, pin);
+      await createShop(uid, name, location, pin);
       alert("Successfully created a new shop");
       router.push("/shops");
     } catch (err) {
@@ -132,7 +132,7 @@ const Dashboard = () => {
                 className=" w-full "
                 onSubmit={(e) => {
                   e.preventDefault();
-                  createNewShop();
+                  createNewShop(currentUser.uid, name, location, pin);
                 }}
               >
                 <h2 className="text-orange-500 text-2xl px-6 mb-4">
