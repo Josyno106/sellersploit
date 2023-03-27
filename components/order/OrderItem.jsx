@@ -18,6 +18,21 @@ const OrderItem = React.forwardRef(({ showReceipt }, ref) => {
     return accumulator + object.total;
   }, 0);
 
+  let date = new Date().toJSON();
+
+  const handleReceiptId = (length) => {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result.toUpperCase();
+  };
+
   return (
     <>
       <div ref={ref}>
@@ -40,6 +55,7 @@ const OrderItem = React.forwardRef(({ showReceipt }, ref) => {
             Sales Completed Upon Generation of this Receipt
             <br />
             Mobile: **** *** *** <br />
+            Entry : {handleReceiptId(9)} <br />
           </p>
         ) : null}
         <ul className=" select-none ">
@@ -68,14 +84,14 @@ const OrderItem = React.forwardRef(({ showReceipt }, ref) => {
           ) : null}
           {showReceipt ? (
             <>
-              <ul>
-                {itemsList.map((item, index) => (
-                  <li key={index}>{parseInt(numOfItems)}</li>
-                ))}
-              </ul>
-              {/* {itemsList.length} */}
               <p className=" text-xs mt-5 ">
-                You were Served by {currentUserDetails.firstname}
+                You were Served by{" "}
+                <span className="font-bold">
+                  {currentUserDetails.firstname} {currentUserDetails.lastname}
+                </span>
+              </p>
+              <p className="text-xs mt-2">
+                Generated @ {new Date().toLocaleString()}
               </p>
               <p className="font-bold mt-1 text-xs py-0 px-1">
                 Goods Once Sold Are NOT Returnable

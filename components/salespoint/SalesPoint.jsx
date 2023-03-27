@@ -61,7 +61,7 @@ const SalesPoint = () => {
               price: doc.data().price,
               litres: "1",
               quantity: 1,
-              total: 1,
+
               code: doc.data().code,
               id: doc.id,
             })
@@ -191,22 +191,23 @@ const SalesPoint = () => {
            items-center justify-center text-xl font-bold gap-3 cursor-pointer
            text-white select-none"
                   >
-                    <BsCartPlusFill /> Lipa Sasa
+                    <BsCartPlusFill /> Print Receipt
                   </div>
                 )}
-                content={() => setShowReceipt(!showReceipt)}
-                // componentRef.current
+                // content={() => setShowReceipt(!showReceipt)}
+                content={() => componentRef.current}
               />
             </div>
 
-            {/* <div
-                className=" absolute  bg-custom-orange bottom-0 w-full left-0 p-4 flex
+            <div
+              className=" absolute  bg-custom-orange bottom-16 w-full left-0 p-4 flex 
            items-center justify-center text-xl font-bold gap-3 cursor-pointer
            text-white select-none
            "
-              >
-                <BsCartPlusFill /> Checkout
-              </div> */}
+              onClick={() => setShowReceipt(!showReceipt)}
+            >
+              <BsCartPlusFill /> {!showReceipt ? "Checkout" : "Back to order"}
+            </div>
           </div>
         </div>
       </div>
